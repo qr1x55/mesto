@@ -7,4 +7,5 @@
   max-width: 282px;
   overflow: hidden;
   box-sizing: border-box;
+  line-height: 0;
 }

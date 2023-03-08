@@ -4,9 +4,22 @@
   background-position: center;
   height: 24px;
   width: 24px;
-  background-color: #000000;
+  padding: 0;
+  margin-left: 18px;
+  background-color: rgba(0,0,0,0);
   border: 1px solid #FFFFFF;
   cursor: pointer;
-  grid-area: profile__edit-button;
-  align-self: flex-end;
+}
+
+@media screen and (max-width: 620px) {
+
+  .profile__edit-button {
+    background-image: url(../../../images/edit-small.svg);
+    height: 18px;
+    width: 18px;
+    margin: 0;
+    position: absolute;
+    right: -28px;
+    top: 8px;
+  }
 }
