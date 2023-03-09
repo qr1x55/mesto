@@ -1,7 +1,7 @@
 .elements__like-button {
   min-width: 22px;
   min-height: 19px;
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, transparent);
   background-image: url(../../../images/heart.svg);
   background-repeat: no-repeat;
   background-position: center;

@@ -22,7 +22,7 @@
             <p class="profile__job">Исследователь океана </p>
           </div>
         </div>
-        <button class="profile__add-button button"></button>
+        <button type="button" class="profile__add-button button"></button>
       </section>
       <section class="elements">
         <div class="elements__element">
@@ -54,14 +54,14 @@
           </div>
         </div>
         <div class="elements__element">
-          <img class="elements__picture" src="./images/400.jpg" alt="Домбай">
+          <img class="elements__picture" src="./images/cat-narrow.jpg" alt="Домбай">
           <div class="elements__caption-block">
             <h2 class="elements__caption">Домбай</h2>
             <button type="button" class="elements__like-button"></button>
           </div>
         </div>
         <div class="elements__element">
-          <img class="elements__picture" src="./images/400-2.jpg" alt="Карачаевск">
+          <img class="elements__picture" src="./images/cat-wide.jpg" alt="Карачаевск">
           <div class="elements__caption-block">
             <h2 class="elements__caption">Карачаево-Черкессия</h2>
             <button type="button" class="elements__like-button"></button>
@@ -72,17 +72,17 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="editForm">
-          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
-          <input type="text" placeholder="О себе" class="popup__input popup__input_type_job">
+          <input type="text" name="editName" placeholder="Имя" class="popup__input popup__input_type_name">
+          <input type="text" name="editJob" placeholder="О себе" class="popup__input popup__input_type_job">
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
-        <button type="reset" class="popup__exit-button button"></button>
+        <button type="button" class="popup__exit-button button"></button>
       </div>
-    </section>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

@@ -2,9 +2,10 @@
   background-image: url(../../../images/add.svg);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 22px;
   width: 150px;
   height: 50px;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, transparent);
   border: 2px solid #FFFFFF;
   cursor: pointer;
   align-self: center;
@@ -17,7 +18,7 @@
 @media screen and (max-width: 899px) {
 
   .profile__add-button {
-    background-image: url(../../../images/add-small.svg);
+    background-size: 16px;
     width: 282px;
   }
 }

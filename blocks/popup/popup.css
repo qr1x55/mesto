@@ -2,7 +2,7 @@
   display: none;
 }
 
-.popup:before {
+.popup::before {
   content: '';
   background: #000000;
   position: fixed;
@@ -13,10 +13,3 @@
   opacity: 0.5;
   z-index: 4;
 }
-
-@media screen and (max-width: 320px) {
-
-  .popup:before {
-    width: 320px;
-  }
-} 
