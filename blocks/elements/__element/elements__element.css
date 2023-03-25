@@ -4,7 +4,10 @@
   border-radius: 10px;
   background-color: #FFFFFF;
   color: #000000;
-  max-width: 282px;
+  width: 282px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
   box-sizing: border-box;
   line-height: 0;

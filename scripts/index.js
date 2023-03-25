@@ -5,7 +5,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const pictureButton = document.querySelector('.elements__picture-button');
 
-const exitPopup = document.querySelectorAll('.popup__exit-button');
+const exitButtons = document.querySelectorAll('.popup__exit-button');
 
 const saveButton = document.querySelector('.popup__save-button');
 
@@ -21,13 +21,15 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupPicture = document.querySelector('.popup_type_picture');
 
+const popupPic = document.querySelector('.popup__picture');
+const popupCap = document.querySelector('.popup__caption');
+
 const popupEditForm = document.querySelector('.popup__form_type_edit');
 const popupAddForm = document.querySelector('.popup__form_type_add');
 
 const elementsGrid = document.querySelector('.elements');
-const elementTemplate = document.querySelector('#elements__element').content;
 
-let initialElements = [
+const initialElements = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -54,11 +56,13 @@ let initialElements = [
   }
 ]; 
 
-function renderPlace (card) {
-  const placeElement = elementTemplate.cloneNode(true);
+function createCard (card) {
+  const elementsTemplate = document.querySelector('#elements__element').content;
+  const placeElement = elementsTemplate.querySelector('.elements__element').cloneNode(true);
 
   placeElement.querySelector('.elements__caption').textContent = card.name;
   placeElement.querySelector('.elements__picture').src = card.link;
+  placeElement.querySelector('.elements__picture').alt = card.name;
 
   placeElement.querySelector('.elements__like-button').addEventListener('click', function(evt){
     evt.target.classList.toggle('elements__like-button_active');
@@ -71,17 +75,19 @@ function renderPlace (card) {
     closeElement.remove();
   })
 
-  console.log();
-
   placeElement.querySelector('.elements__picture').addEventListener('click', () => openPopupPicture(card));
 
-  elementsGrid.prepend(placeElement);
+  return placeElement;
 }
 
-for (let i = initialElements.length - 1; i >= 0; i = i - 1) {
-  renderPlace(initialElements[i]);
+function renderPlace (element) {
+  elementsGrid.prepend(element);
 }
-  
+
+initialElements.reverse().forEach(element => {
+  renderPlace(createCard(element));
+});
+
 function handleEditFormSubmit (event) {
   event.preventDefault();
 
@@ -93,20 +99,18 @@ function handleEditFormSubmit (event) {
 
 function handleAddFormSubmit (event) {
   event.preventDefault();
-  let tempItem = {
+  const tempItem = {
     name: inputPlace.value,
     link: inputPicture.value
   };
-
-  initialElements.unshift(tempItem);
   
-  renderPlace(tempItem);
+  renderPlace(createCard(tempItem));
 
   closePopup(popupAdd);
 }
 
 function openPopup(form) {
-  form.classList.toggle('popup_opened');
+  form.classList.add('popup_opened');
 }
 
 function openPopupEdit() {
@@ -122,16 +126,17 @@ function openPopupAdd() {
 }
 
 function openPopupPicture(item) {
-  document.querySelector('.popup__picture').src = item.link;
-  document.querySelector('.popup__caption').textContent = item.name;
+  popupPic.src = item.link;
+  popupPic.alt = item.name;
+  popupCap.textContent = item.name;
   openPopup(popupPicture);
 }
 
 function closePopup(form) {
-  form.classList.toggle('popup_opened');
+  form.classList.remove('popup_opened');
 }
 
-exitPopup.forEach(button => {
+exitButtons.forEach(button => {
   const parent = button.closest('.popup')
   button.addEventListener('click', () => closePopup(parent));
 });
