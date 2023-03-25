@@ -24,9 +24,7 @@
         </div>
         <button type="button" class="profile__add-button button"></button>
       </section>
-      <section class="elements">
-       
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
@@ -39,7 +37,7 @@
           <input type="text" name="editJob" placeholder="О себе" class="popup__input popup__input_type_job">
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
-        <button type="button" class="popup__exit-button popup__exit_type_edit  button"></button>
+        <button type="button" class="popup__exit-button button"></button>
       </div>
     </div>
     <div class="popup popup_type_add">
@@ -50,19 +48,19 @@
           <input type="text" name="addPicture" placeholder="Ссылка на картинку" class="popup__input popup__input_type_picture">
           <button type="submit" class="popup__create-button">Создать</button>
         </form>
-        <button type="button" class="popup__exit-button popup__exit_type_add button"></button>
+        <button type="button" class="popup__exit-button button"></button>
       </div>
     </div>
     <div class="popup popup_type_picture">
       <div class="popup__container popup__container_type_picture">
-        <img class="popup__picture" src="">
+        <img class="popup__picture" src="#" alt="Иллюстрация места">
         <h2 class="popup__caption"></h2>
-        <button type="button" class="popup__exit-button popup__exit_type_add button"></button>
+        <button type="button" class="popup__exit-button button"></button>
       </div>
     </div>
     <template id="elements__element">
       <div class="elements__element">
-        <img class="elements__picture" src="">
+        <img class="elements__picture" src="#" alt="Иллюстрация места">
         <div class="elements__caption-block">
           <h2 class="elements__caption"></h2>
           <button type="button" class="elements__like-button"></button>
