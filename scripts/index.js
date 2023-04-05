@@ -112,7 +112,7 @@ function closePopup(form) {
 }
 
 const closePopupClickOverlay = (popupForm) => {
-  popupForm.addEventListener('click', (evt) => {
+  popupForm.addEventListener('mousedown', (evt) => {
     if(evt.target === popupForm) {
       closePopup(popupForm);
     }
