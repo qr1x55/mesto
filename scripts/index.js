@@ -15,7 +15,7 @@ const inputJob = document.querySelector('.popup__input_type_job');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputPicture = document.querySelector('.popup__input_type_picture');
 
-const popup = document.querySelector('.popup');
+// const popup = document.querySelector('.popup');
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
@@ -111,6 +111,7 @@ function handleAddFormSubmit (event) {
 
 function openPopup(form) {
   form.classList.add('popup_opened');
+  enableValidation();
 }
 
 function openPopupEdit() {

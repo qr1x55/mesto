@@ -1,4 +1,4 @@
-.popup__create-button {
+.popup__submit-button {
   min-height: 50px;
   background-color: rgba(0, 0, 0, 1);
   color: #FFFFFF;
@@ -12,14 +12,14 @@
   border-radius: 2px;
 }
 
-.popup__create-button:hover {
+.popup__submit-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   transition-duration: 0.5s;
 }
 
 @media screen and (max-width: 620px) {
 
-  .popup__create-button {
+  .popup__submit-button {
     min-height: 46px;
     font-size: 14px;
   }
