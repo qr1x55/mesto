@@ -35,11 +35,11 @@
         <form class="popup__form popup__form_type_edit" name="editForm" novalidate>
           <label class="popup__input-field">
             <input id="name-input" type="text" name="editName" placeholder="Имя" class="popup__input popup__input_type_name" required minlength="2" maxlength="40">
-            <span class="popup__input-error name-input-error"></span>
+            <span id="name-input-error" class="popup__input-error"></span>
           </label>
           <label class="popup__input-field">
             <input id="job-input" type="text" name="editJob" placeholder="О себе" class="popup__input popup__input_type_job" required minlength="2" maxlength="200">
-            <span class="popup__input-error job-input-error"></span>
+            <span id="job-input-error" class="popup__input-error"></span>
           </label>
           <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
@@ -52,11 +52,11 @@
         <form class="popup__form popup__form_type_add" name="addForm" novalidate>
           <label class="popup__input-field">
             <input id="place-input" type="text" name="addPlace" placeholder="Название" class="popup__input popup__input_type_place" required minlength="2" maxlength="30">
-            <span class="popup__input-error place-input-error"></span>
+            <span id="place-input-error" class="popup__input-error"></span>
           </label>
           <label class="popup__input-field">
             <input id="picture-input" type="url" name="addPicture" placeholder="Ссылка на картинку" class="popup__input popup__input_type_picture" required>
-            <span class="popup__input-error picture-input-error"></span>
+            <span id="picture-input-error" class="popup__input-error"></span>
           </label> 
           <button type="submit" class="popup__submit-button">Создать</button>
         </form>
@@ -80,7 +80,8 @@
         <button type="button" class="elements__remove-button"></button>
       </div>
     </template>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/loadup.js"></script>
     <script src="./scripts/validation.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

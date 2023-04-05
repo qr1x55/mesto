@@ -6,4 +6,7 @@
   color: rgba(255, 0, 0, 1);
   opacity: 0;
   transition: 0.3s;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
