@@ -3,9 +3,6 @@ const profileJob = document.querySelector('.profile__job');
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const pictureButton = document.querySelector('.elements__picture-button');
-
-const exitButtons = document.querySelectorAll('.popup__exit-button');
 
 const submitButton = document.querySelector('.popup__submit-button');
 
@@ -15,7 +12,7 @@ const inputJob = document.querySelector('.popup__input_type_job');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputPicture = document.querySelector('.popup__input_type_picture');
 
-const popup = document.querySelector('.popup');
+const popups = document.querySelectorAll('.popup');
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
@@ -83,9 +80,7 @@ function handleAddFormSubmit (event) {
 
 function openPopup(form) {
   form.classList.add('popup_opened');
-  enableValidation(validationObj);
-  closePopupClickOverlay(form);
-  closePopupByEsc(form);
+  document.addEventListener('keydown', closeByEscape); 
 }
 
 function openPopupEdit() {
@@ -97,7 +92,8 @@ function openPopupEdit() {
 function openPopupAdd() {
   inputPlace.value = '';
   inputPicture.value = '';
-  openPopup(popupAdd);
+  submitButtonDisabled(popupAdd);
+  openPopup(popupAdd); 
 }
 
 function openPopupPicture(item) {
@@ -109,27 +105,31 @@ function openPopupPicture(item) {
 
 function closePopup(form) {
   form.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
-const closePopupClickOverlay = (popupForm) => {
-  popupForm.addEventListener('mousedown', (evt) => {
-    if(evt.target === popupForm) {
-      closePopup(popupForm);
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+function submitButtonDisabled(form) {
+  const button = form.querySelector('.popup__submit-button');
+  button.classList.add(validationObj.inactiveButtonClass);
+  button.setAttribute("disabled", true);
+}
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')){
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__exit-button')) {
+      closePopup(popup)
     }
   })
-}
-
-const closePopupByEsc = (popupForm) => {
-  window.addEventListener('keydown', (evt) => {
-    if(evt.key === 'Escape') {
-      closePopup(popupForm);
-    }
-  })
-}
-
-exitButtons.forEach(button => {
-  const parent = button.closest('.popup')
-  button.addEventListener('click', () => closePopup(parent));
 });
 
 editButton.addEventListener('click', openPopupEdit);
