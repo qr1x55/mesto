@@ -24,8 +24,12 @@ const popupPicture = document.querySelector('.popup_type_picture');
 const popupPic = document.querySelector('.popup__picture');
 const popupCap = document.querySelector('.popup__caption');
 
-const popupEditForm = document.querySelector('.popup__form_type_edit');
-const popupAddForm = document.querySelector('.popup__form_type_add');
+const popupEditForm = document.forms['editForm'];
+const popupAddForm = document.forms['addForm'];
+
+const formValidators = {
+}
+
 
 const elementsGrid = document.querySelector('.elements');
 
@@ -35,8 +39,13 @@ function addCard (element) {
   elementsGrid.prepend(element);
 }
 
+function renderCard (item) {
+  const cardElement = new Card(item, cardTemplate, openPopupPicture).createCard();
+  return cardElement
+};
+
 initialElements.reverse().forEach(element => {
-  addCard(new Card(element, cardTemplate, openPopupPicture).createCard());
+  addCard(renderCard(element));
 });
 
 function handleEditFormSubmit (event) {
@@ -56,28 +65,13 @@ function handleAddFormSubmit (event) {
     link: inputPicture.value
   };
   
-  addCard(new Card(tempItem, cardTemplate, openPopupPicture).createCard());
+  addCard(renderCard(tempItem));
   closePopup(popupAdd);
 }
 
 function openPopup(form) {
   form.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape); 
-}
-
-function openPopupEdit() {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
-  new FormValidator(validationObj, popupEditForm).resetValidation();
-  openPopup(popupEdit);
-}
-
-function openPopupAdd() {
-  inputPlace.value = '';
-  inputPicture.value = '';
-  new FormValidator(validationObj, popupAddForm).resetValidation();
-  submitButtonDisabled(popupAdd);
-  openPopup(popupAdd); 
 }
 
 function openPopupPicture(item) {
@@ -99,12 +93,6 @@ function closeByEscape(evt) {
   }
 }
 
-function submitButtonDisabled(form) {
-  const button = form.querySelector('.popup__submit-button');
-  button.classList.add(validationObj.inactiveButtonClass);
-  button.setAttribute("disabled", true);
-}
-
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')){
@@ -116,11 +104,32 @@ popups.forEach((popup) => {
   })
 });
 
-editButton.addEventListener('click', openPopupEdit);
-addButton.addEventListener('click', openPopupAdd);
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationObj);
+
+editButton.addEventListener('click', () => {
+  inputName.value = profileName.textContent;
+  inputJob.value = profileJob.textContent;
+  formValidators['editForm'].resetValidation()
+  openPopup(popupEdit);
+});
+
+addButton.addEventListener('click', () => {
+  inputPlace.value = '';
+  inputPicture.value = '';
+  formValidators['addForm'].resetValidation()
+  openPopup(popupAdd); 
+});
 
 popupEditForm.addEventListener('submit', handleEditFormSubmit); 
 popupAddForm.addEventListener('submit', handleAddFormSubmit); 
-
-new FormValidator(validationObj, popupEditForm).enableValidation();
-new FormValidator(validationObj, popupAddForm).enableValidation();
