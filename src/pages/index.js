@@ -11,15 +11,14 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 const picturePopup = new PopupWithImage(pictureSelector);
 picturePopup.setEventListeners();
 
-const section = new Section({
-  items: initialElements,
-  renderer: (item) => {
-    const cardElement = new Card(item, cardTemplate, picturePopup.open);
-    return cardElement.createCard();
-  }
-}, elementsGrid);
+function createCard(item) {
+  const cardElement = new Card(item, cardTemplate, picturePopup.open);
+  return cardElement.createCard();
+}
 
-section.renderCards();
+const section = new Section(createCard, elementsGrid);
+
+section.renderCards(initialElements);
 
 const userInfo = new UserInfo(userData);
 

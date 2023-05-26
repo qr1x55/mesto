@@ -6,29 +6,31 @@ export default class Card {
     this._template = templateSelector;
     this._openPopup = openPopup;
     this._card = templateSelector.querySelector('.elements__element').cloneNode(true);
-    
+    this._likeButton = this._card.querySelector('.elements__like-button');
+    this._deleteButton = this._card.querySelector('.elements__remove-button');
+    this._cardPicture = this._card.querySelector('.elements__picture');
   }
 
-  _setListeners = () => {
-    this._likeButton.addEventListener('click', function(evt){
-      evt.target.classList.toggle('elements__like-button_active');
-    });
+  _likeHandler = () => {
+    this._likeButton.classList.toggle('elements__like-button_active');
+  }
 
-    const deleteButton = this._card.querySelector('.elements__remove-button');
-    deleteButton.addEventListener('click', function() {
-      const closeElement = deleteButton.closest('.elements__element');
-      closeElement.remove();
-    })
+  _deleteHandler = () => {
+    this._card.remove();
+  }
+
+  _setListeners() {
+    this._likeButton.addEventListener('click', this._likeHandler);
+
+    this._deleteButton.addEventListener('click', this._deleteHandler);
 
     this._cardPicture.addEventListener('click', () => this._openPopup(this._data));
   }
 
-  createCard = () => {
-    this._cardPicture = this._card.querySelector('.elements__picture');
-    this._likeButton = this._card.querySelector('.elements__like-button')
-    this._card.querySelector('.elements__caption').textContent = this._data.place;
+  createCard() {
+    this._card.querySelector('.elements__caption').textContent = this._data.name;
     this._cardPicture.src = this._data.link;
-    this._cardPicture.alt = this._data.place;
+    this._cardPicture.alt = this._data.name;
 
     this._setListeners();
     
