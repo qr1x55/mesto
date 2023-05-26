@@ -26,9 +26,9 @@ export default class Card {
   createCard = () => {
     this._cardPicture = this._card.querySelector('.elements__picture');
     this._likeButton = this._card.querySelector('.elements__like-button')
-    this._card.querySelector('.elements__caption').textContent = this._data.name;
+    this._card.querySelector('.elements__caption').textContent = this._data.place;
     this._cardPicture.src = this._data.link;
-    this._cardPicture.alt = this._data.name;
+    this._cardPicture.alt = this._data.place;
 
     this._setListeners();
     

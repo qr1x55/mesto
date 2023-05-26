@@ -1,26 +1,26 @@
 const initialElements = [
   {
-    name: 'Архыз',
+    place: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Челябинская область',
+    place: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Иваново',
+    place: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Камчатка',
+    place: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Холмогорский район',
+    place: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Байкал',
+    place: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
@@ -34,4 +34,21 @@ const validationObj = {
   errorClass: 'popup__input-error_active'
 };
 
-export {initialElements, validationObj};
+const editButton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
+
+const formValidators = {};
+
+const userSelector = '.popup_type_edit';
+const pictureSelector = '.popup_type_picture'; 
+const addSelector = '.popup_type_add';
+
+const elementsGrid = document.querySelector('.elements');
+const cardTemplate = document.querySelector('#elements__element').content;
+
+const userData = {
+  userNameSelector: '.profile__name',
+  userJobSelector: '.profile__job'
+}
+
+export {initialElements, validationObj, editButton, addButton, formValidators, userSelector, pictureSelector, addSelector, elementsGrid, cardTemplate, userData};
