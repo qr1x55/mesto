@@ -10,6 +10,7 @@
   cursor: pointer;
   align-self: center;
   box-sizing: border-box;
+  margin-bottom: 3px;
   padding: 0;
   opacity: 1;
 }
